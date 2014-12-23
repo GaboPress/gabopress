@@ -1,11 +1,14 @@
 # Django Modules
 from django.db import models
 
+# App Modules
+from accounts.models import User
+
 
 class Category(models.Model):
     name = models.CharField(max_length=140, blank=False, null=False)
     slug = models.SlugField(max_length=140, unique=True)
-    active = models.BooleanFiel(default=True)
+    active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=True, auto_now=True)
 
@@ -15,6 +18,21 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+        ordering = ['-created']
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=140, blank=False, null=False)
+    active = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=True, auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Tag'
+        verbose_name_plural = 'Tags'
         ordering = ['-created']
 
 
@@ -28,7 +46,10 @@ class Article(models.Model):
     title = models.CharField(max_length=140, blank=False, null=False)
     slug = models.SlugField(max_length=140, unique=True)
     content = models.TextField()
-    publish = models.BooleanFiel(default=True)
+    category = models.ForeignKey(Category, null=True, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True, null=True)
+    published_by = models.ForeignKey(User, blank=False, null=False)
+    publish = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=True, auto_now=True)
 
@@ -41,11 +62,3 @@ class Article(models.Model):
         verbose_name = 'Article'
         verbose_name_plural = 'Articles'
         ordering = ['-created']
-
-
-class Comment(models.Model):
-    pass
-
-
-class Link(models.Model):
-    pass
