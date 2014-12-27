@@ -1,3 +1,3 @@
 gabopress
 =========
-My CMS
+My Secure CMS
