@@ -1,3 +1,3 @@
 gabopress
-=========
-My Secure CMS
+=============
+The CryptoCMS
