@@ -1,3 +1,3 @@
-gabopress
+GaboPress
 =============
-The CryptoCMS
+The encrypted, Python powered and centralized / distributed CMS.
