@@ -19,18 +19,17 @@ def article(request, slug):
 
 
 def articles(request, year=None, month=None, tag=None, author=None):
-    articles = []
     if year:
-        articles += Article.objects.filter(created__year=year)
+        articles = Article.objects.filter(created__year=year)
 
     if month:
-        articles += Article.objects.filter(created__month=month)
+        articles = Article.objects.filter(created__month=month)
 
     if tag:
-        articles += Article.objects.filter(tags__slug=tag)
+        articles = Article.objects.filter(tags__slug=tag)
 
     if author:
-        articles += Article.objects.filter(author__username=author)
+        articles = Article.objects.filter(author__username=author)
 
     context = {}
     context['articles'] = articles
