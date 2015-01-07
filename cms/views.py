@@ -8,8 +8,7 @@ from .models import Article
 def index(request):
     """Index view"""
     context = {}
-    context['articles'] = Article.objects.filter(
-        publish=True).order_by('-created')
+    context['articles'] = Article.objects.all().order_by('-created')
     return render(request, 'cms/index.html', context)
 
 
