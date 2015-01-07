@@ -29,6 +29,9 @@ def articles(request, year=None, month=None, tag=None, author=None):
     if tag:
         articles += Article.objects.filter(tags__slug=tag)
 
+    if author:
+        articles += Article.objects.filter(author__username=author)
+
     context = {}
     context['articles'] = articles
     return render(request, 'cms/articles.html', context)
