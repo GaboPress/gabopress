@@ -8,6 +8,7 @@ from .models import Article
 def index(request):
     """Index view"""
     context = {}
+    context['articles'] = Article.objects.filter(publish=True)
     return render(request, 'cms/index.html', context)
 
 
