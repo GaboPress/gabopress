@@ -18,10 +18,17 @@ def article(request, slug):
     return render(request, 'cms/article.html', context)
 
 
-def list(request, year=None, month=None, tag=None, author=None):
+def articles(request, year=None, month=None, tag=None, author=None):
     articles = []
     if year:
-        articles.append(Article.objects.filter(created__year=year))
+        articles += Article.objects.filter(created__year=year)
 
     if month:
-        articles.append(Article.objects.filter(created__month=month))
+        articles += Article.objects.filter(created__month=month)
+
+    if tag:
+        articles += Article.objects.filter(tags__slug=tag)
+
+    context = {}
+    context['articles'] = articles
+    return render(request, 'cms/articles.html', context)
