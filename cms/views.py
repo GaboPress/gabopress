@@ -19,4 +19,6 @@ def article(request, slug):
 
 
 def list(request, year=None, month=None, tag=None, author=None):
-    pass
+    articles = []
+    if year:
+        articles.append(Article.objects.filter(created__year=year))
