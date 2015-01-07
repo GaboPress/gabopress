@@ -15,3 +15,7 @@ def article(request, slug):
     context = {}
     context['article'] = Article.objects.filter(slug=slug)
     return render(request, 'cms/article.html', context)
+
+
+def list(request, year=None, month=None, tag=None, author=None):
+    pass
