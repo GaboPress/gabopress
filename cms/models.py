@@ -48,7 +48,7 @@ class Article(models.Model):
     content = models.TextField()
     category = models.ForeignKey(Category, null=True, blank=True)
     tags = models.ManyToManyField(Tag, blank=True, null=True)
-    published_by = models.ForeignKey(User, blank=False, null=False)
+    author = models.ForeignKey(User, blank=False, null=False)
     publish = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=True, auto_now=True)
