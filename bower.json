@@ -8,5 +8,6 @@
 	"normalize-css": "~3.0.1",
 	"requirejs": "~2.1.8",
 	"requirejs-text": "~2.0.12",
+	"sass-mediaqueries": "~1.3.0"
   }
 }
